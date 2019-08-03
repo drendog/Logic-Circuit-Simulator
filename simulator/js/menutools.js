@@ -4,6 +4,7 @@ const MouseAction =
     MOVE: 1,
     DELETE: 2
 }
+
 let currMouseAction = MouseAction.EDIT;
 
 function activeTool(elTool) 
@@ -18,15 +19,19 @@ function activeTool(elTool)
         currMouseAction = MouseAction.EDIT;
         resetElements();
         break;
+
         case 'Move':
         currMouseAction = MouseAction.MOVE;
         document.getElementById("canvas-sim").style.cursor = "move";
         break;
+        
         case 'Delete':
         currMouseAction = MouseAction.DELETE;
         break;
+        
         case "LogicInput":
         logicInput.push(new LogicInput());
+        
         break;
         case "LogicOutput":
         logicOutput.push(new LogicOutput());
