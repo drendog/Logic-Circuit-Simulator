@@ -33,7 +33,7 @@ sudo apt-get install git
 git clone https://github.com/drendog/Logic-Circuit-Simulator.git
 ```
 
-### Serve it in local
+### Serve it on local
 ```bash
 cd Logic-Circuit-Simulator
 npx serve
