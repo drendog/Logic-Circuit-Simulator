@@ -15,6 +15,10 @@ A live version is available [here](https://drendog.github.io/Logic-Circuit-Simul
 
 ![](simulator/img/trashcan.svg) Remove the component
 
+![](simulator/img/LogicInput.png) Logic Input (double click for change value)
+
+![](simulator/img/LogicOutput.png) Logic Output
+
 ## Built With
 * HTML
 * Javascript
