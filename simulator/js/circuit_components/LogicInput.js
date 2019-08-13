@@ -27,10 +27,7 @@ class LogicInput
             this.posY = mouseY;
         }
 
-        if(this.value)
-            fill(0, 255, 0);
-        else
-            fill(255, 0, 0);
+        fillValue(this.value);
         
         if(this.isMoving)
         {
@@ -47,9 +44,23 @@ class LogicInput
         this.output.setValue(this.value);
         this.output.draw();
 
+        this.printInfo();
+
+        textSize(18);
+        textStyle(BOLD);
+
+        if(this.value)
+            text('1', this.posX - this.diameter / 4, this.posY + this.diameter / 4);
+        else
+            text('0', this.posX - this.diameter / 4, this.posY + this.diameter / 4);
+    }
+
+    printInfo()
+    {
         noStroke();
         fill(0);
         textSize(12);
+        textStyle(NORMAL);
         text('LOG. INPUT', this.posX - 20, this.posY + 25);
     }
 
@@ -102,6 +113,11 @@ class LogicInput
             return true;
         }
         return false;
+    }
+
+    toggle()
+    {
+        this.value ^= true;
     }
 
 }

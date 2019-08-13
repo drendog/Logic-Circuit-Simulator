@@ -21,10 +21,7 @@ class Node
 
     draw()
     {
-        if(this.value)
-            fill(0, 255, 0);
-        else
-            fill(255, 0, 0);
+        fillValue(this.value);
 
         stroke(0);
         strokeWeight(4);
@@ -67,3 +64,11 @@ class Node
     
 
 };
+
+function fillValue(value)
+{
+    if(value)
+        fill(255, 193, 7);
+    else
+        fill(52, 58, 64);
+}

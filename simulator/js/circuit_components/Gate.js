@@ -1,29 +1,17 @@
-const gateType =
-{
-    NONE: 0, // for testing usage
-    NOT: 1,
-    AND: 2,
-    NAND: 3,
-    OR: 4,
-    NOR: 5,
-    XOR: 6,
-    XNOR: 7
-};
-
 class Gate 
 {
     constructor(srtType) 
     {
+        this.type = this.convertToType(srtType);
+        this.width = gateIMG[this.type].width;
+        this.height = gateIMG[this.type].height;
         this.posX = mouseX - (this.width / 2);
         this.posY = mouseY - (this.height / 2);
-        this.width = 100;
-        this.height = 50;
         this.color = [127, 127, 255];
         this.isSpawned = false;
         this.offsetMouseX = 0;
         this.offsetMouseY = 0;
         this.isMoving = false;
-        this.type = this.convertToType(srtType);
         
         this.input = [];
         this.input.push(new Node(this.posX, this.posY + 15));
@@ -81,8 +69,13 @@ class Gate
         for (let i = 0; i < this.input.length; i++)
             this.input[i].draw();
         
-        this.output.setValue(this.calculateValue());
+        this.generateOutput();
         this.output.draw();
+    }
+
+    generateOutput()
+    {
+        this.output.setValue(this.calculateValue());
     }
 
     calculateValue()
