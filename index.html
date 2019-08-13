@@ -1,101 +1,244 @@
 <html>
-
-<head>
-  <!-- BOOTSTRAP STUFF -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-  <!-- p5 stuff -->
-  <script src="lib/p5.min.js"></script>
-
-  <!-- Simulator stuff -->
-  <script src="simulator/js/circuit_components/Node.js"></script>
-  <script src="simulator/js/circuit_components/Wire.js"></script>
-  <script src="simulator/js/circuit_components/Gate.js"></script>
-  <script src="simulator/js/circuit_components/LogicInput.js"></script>
-  <script src="simulator/js/circuit_components/LogicOutput.js"></script>
-  <script src="simulator/js/simulator.js"></script>
-  <script src="simulator/js/menutools.js"></script>
-  <title>Logic Circuit Simulator</title>
-</head>
-<header>
-  <!-- Fixed navbar -->
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Logic Circuit Simulator</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-      aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <button type="button" class="btn btn-outline-light"
-            onclick="window.location.href='https://git.io/fjHIF'">
-            <i class="fa fa-github"></i>
-            GitHub
-          </button>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</header>
-<!-- Begin page content -->
-
-<body>
-  <div class="container-fluid">
-    <hr>
-    <div class="row">
-      <div class="tools col-0 ml-3 pr-0" style="overflow-y: scroll">
-        <div class="list-group float-right" style="min-width: 50px; max-width: 60px">
-          <button type="button" tool="Edit" onclick="activeTool(this)" class="list-group-item list-group-item-action pl-3 Edit active">
-            <img src="simulator/img/pencil.svg" class="ml-0" alt="" width="24">          
-          </button>
-          <button type="button" tool="Move" onclick="activeTool(this)" class="list-group-item list-group-item-action p-0">
-              <img src="simulator/img/openhand.svg" class="ml-1" alt="" width="50">           
-          </button>
-          <button type="button" tool="Delete" onclick="activeTool(this)" class="list-group-item list-group-item-action pl-3">
-            <img src="simulator/img/trashcan.svg" class="ml-0" alt="" width="24">           
-          </button>
-          <button type="button" tool="LogicInput" onclick="activeTool(this)" class="list-group-item list-group-item-action pl-1">
-              <img src="simulator/img/LogicInput.svg" class="ml-2" alt="" width="32">
-          <button type="button" tool="LogicOutput" onclick="activeTool(this)" class="list-group-item list-group-item-action pl-1">
-              <img src="simulator/img/LogicOutput.svg" class="ml-2" alt="" width="32">
-          </button>
-          <button type="button" tool="NOT" isGate="true" onclick="activeTool(this)" class="list-group-item list-group-item-action pl-1">
-            <img src="simulator/img/NOT.svg" alt="" width="50">
-          </button>
-          <button type="button" tool="AND" isGate="true" onclick="activeTool(this)" class="list-group-item list-group-item-action pl-1">
-            <img src="simulator/img/AND.svg" alt="" width="50">
-          </button>
-          <button type="button" tool="NAND" isGate="true" onclick="activeTool(this)" class="list-group-item list-group-item-action pl-1">
-            <img src="simulator/img/NAND.svg" alt="" width="50">
-          </button>
-          <button type="button" tool="OR" isGate="true" onclick="activeTool(this)" class="list-group-item list-group-item-action pl-1">
-            <img src="simulator/img/OR.svg" alt="" width="50">
-          </button>
-          <button type="button" tool="NOR" isGate="true" onclick="activeTool(this)" class="list-group-item list-group-item-action pl-1">
-            <img src="simulator/img/NOR.svg" alt="" width="50">
-          </button>
-          <button type="button" tool="XOR" isGate="true" onclick="activeTool(this)" class="list-group-item list-group-item-action pl-1">
-            <img src="simulator/img/XOR.svg" alt="" width="50">
-          </button>
-          <button type="button" tool="XNOR" isGate="true" onclick="activeTool(this)" class="list-group-item list-group-item-action pl-1">
-            <img src="simulator/img/XNOR.svg" alt="" width="50">
-          </button>
-
-        </div>
-      </div>
-      <div class="col-10 pl-0">
-        <!-- Simulator Canvas -->
-        <div id="canvas-sim">
-        </div>
-      </div>
-    </div>
-  </div>
-</body>
-
+	<head>
+		<!-- BOOTSTRAP STUFF -->
+		<link rel="stylesheet" href="vendor/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script src="vendor/js/jquery-3.3.1.slim.min.js"></script>
+		<script src="vendor/js/popper.min.js"></script>
+		<script src="vendor/js/bootstrap.min.js"></script>
+		<!-- p5 stuff -->
+		<script src="vendor/js/p5.min.js"></script>
+		<!-- Simulator stuff -->
+		<script src="simulator/js/circuit_components/Enums.js"></script>
+		<script src="simulator/js/circuit_components/Node.js"></script>
+		<script src="simulator/js/circuit_components/Wire.js"></script>
+		<script src="simulator/js/circuit_components/Gate.js"></script>
+		<script src="simulator/js/circuit_components/LogicInput.js"></script>
+		<script src="simulator/js/circuit_components/LogicOutput.js"></script>
+		<script src="simulator/js/circuit_components/Clock.js"></script>
+		<script src="simulator/js/circuit_components/Integrated.js"></script>
+		<script src="simulator/js/circuit_components/SR_Latch.js"></script>
+		<script src="simulator/js/circuit_components/FF_D.js"></script>
+		<script src="simulator/js/circuit_components/FF_T.js"></script>
+		<script src="simulator/js/circuit_components/FF_JK.js"></script>
+		<script src="simulator/js/simulator.js"></script>
+		<script src="simulator/js/menutools.js"></script>
+		<title>Logic Circuit Simulator</title>
+	</head>
+	<header>
+		<!-- Fixed navbar -->
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Logic Circuit Simulator</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+				aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<button type="button" class="btn btn-outline-light"
+							onclick="window.location.href='https://git.io/fjHIF'">
+						<i class="fa fa-github"></i>
+						GitHub
+						</button>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<!-- Begin page content -->
+	<body>
+		<div class="container-fluid">
+			<hr>
+			<div class="row">
+				<div class="tools col-0 ml-3 pr-0" style="overflow-y: scroll">
+					<div class="list-group float-right" style="min-width: 50px; max-width: 60px">
+						<button type="button" tool="Edit" title="Edit Elements or Create wires" onclick="activeTool(this)" class="list-group-item list-group-item-action pl-3 Edit active">
+						<img src="simulator/img/pencil.svg" class="ml-0" width="24">          
+						</button>
+						<button type="button" tool="Move" title="Move the map" onclick="activeTool(this)" class="list-group-item list-group-item-action p-0">
+						<img src="simulator/img/openhand.svg" class="ml-1" width="50">           
+						</button>
+						<button type="button" tool="Delete" title="Remove Element" onclick="activeTool(this)" class="list-group-item list-group-item-action pl-3">
+						<img src="simulator/img/trashcan.svg" class="ml-0" width="24">           
+						</button>
+						<button type="button" tool="LogicInput" title="Logic Input" onclick="activeTool(this)" class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/LogicInput.svg" class="ml-2" width="32">
+						<button type="button" tool="LogicOutput" title="Logic Output" onclick="activeTool(this)" class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/LogicOutput.svg" class="ml-2" width="32">
+						</button>
+						<button type="button" data-target="#ClockSettings" data-toggle="modal" title="Clock" class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/Clock.svg" width="50">
+						</button>
+						<button type="button" tool="NOT" isGate="true" onclick="activeTool(this)" class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/NOT.svg" width="50">
+						</button>
+						<button type="button" tool="AND" isGate="true" onclick="activeTool(this)" class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/AND.svg" width="50">
+						</button>
+						<button type="button" tool="NAND" isGate="true" onclick="activeTool(this)" class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/NAND.svg" width="50">
+						</button>
+						<button type="button" tool="OR" isGate="true" onclick="activeTool(this)" class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/OR.svg" width="50">
+						</button>
+						<button type="button" tool="NOR" isGate="true" onclick="activeTool(this)" class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/NOR.svg" width="50">
+						</button>
+						<button type="button" tool="XOR" isGate="true" onclick="activeTool(this)" class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/XOR.svg" width="50">
+						</button>
+						<button type="button" tool="XNOR" isGate="true" onclick="activeTool(this)" class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/XNOR.svg" width="50">
+						</button>
+						<button type="button" data-target="#SR_LatchSettings" title="Latch SR NOR-NAND Sync-Async" data-toggle="modal" class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/SR_Latch.svg" width="50">
+						</button>
+						<button type="button" data-target="#FF_D-TypeSettings" title="Flip Flop D Single or Master-Slave" data-toggle="modal" class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/FF_D_MS.svg" width="50">
+						</button>
+						<button type="button" data-target="#FF_T-TypeSettings" title="Flip Flop T Positive-Negative Edge Triggered" data-toggle="modal" class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/FF_T.svg" width="50">
+						</button>
+						<button type="button" data-target="#FF_JK-TypeSettings" title="Flip Flop JK Positive-Negative Edge Triggered" data-toggle="modal" class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/FF_JK.svg" width="50">
+						</button>
+					</div>
+				</div>
+				<div class="col-10 pl-0">
+					<!-- Simulator Canvas -->
+					<div id="canvas-sim">
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<!-- Modal for Clock Settings -->
+	<div class="modal fade" id="ClockSettings" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Clock Settings</h5>
+				</div>
+				<div class="modal-body">
+					<h6>Clock period</h6>
+					<div class="input-group mb-3">
+						<input type="number" class="form-control period" value="1000" min="0">
+						<div class="input-group-append">
+							<span class="input-group-text">ms</span>
+						</div>
+					</div>
+					<h6>Duty Cycle</h6>
+					<div class="input-group mb-3">
+						<input type="number" class="form-control duty-cycle" value="50" min="0" max ="100">
+						<div class="input-group-append">
+							<span class="input-group-text">%</span>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-primary" tool="Clock" onclick="activeTool(this)" data-dismiss="modal">Create</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Modal for Clock Settings-->
+	<!-- Modal for SR Latch Settings -->
+	<div class="modal fade" id="SR_LatchSettings" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">SR Latch Settings</h5>
+				</div>
+				<div class="modal-body">
+					<h6>Choose SR Latch type</h6>
+					<select class="custom-select SR_Latch-gate">
+						<option selected>NOR</option>
+						<option >NAND</option>
+					</select>
+					<br>
+					<select class="custom-select SR_Latch-sync">
+						<option selected>Asynchronous</option>
+						<option>Synchronous</option>
+					</select>
+					<input type="checkbox" class="SR_stabilize" checked>
+					<label>Stabilize - Without this, the outputs may pulsate.</label>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-primary" tool="SR_Latch" onclick="activeTool(this)" data-dismiss="modal">Create</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Modal for SR Latch Settings-->
+	<!-- Modal for D-Type FF Settings -->
+	<div class="modal fade" id="FF_D-TypeSettings" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">D-Type Flip-Flop Settings</h5>
+				</div>
+				<div class="modal-body">
+					<h6>Choose the type</h6>
+					<select class="custom-select FF_D-Setting">
+						<option selected>SINGLE</option>
+						<option>MASTER-SLAVE</option>
+					</select>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-primary" tool="FF_D" onclick="activeTool(this)" data-dismiss="modal">Create</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Modal for Clock Settings-->
+	<!-- Modal for T-Type FF Settings -->
+	<div class="modal fade" id="FF_T-TypeSettings" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">T-Type Flip-Flop Settings</h5>
+				</div>
+				<div class="modal-body">
+					<h6>Choose the type</h6>
+					<select class="custom-select FF_T-Setting">
+						<option selected>Positive Edge-Triggered</option>
+						<option>Negative Edge-Triggered</option>
+					</select>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-primary" tool="FF_T" onclick="activeTool(this)" data-dismiss="modal">Create</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Modal for T-Type FF Settings-->
+	<!-- Modal for JK-Type FF Settings -->
+	<div class="modal fade" id="FF_JK-TypeSettings" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">JK-Type Flip-Flop Settings</h5>
+				</div>
+				<div class="modal-body">
+					<h6>Choose the type</h6>
+					<select class="custom-select FF_JK-Setting">
+						<option selected>Positive Edge-Triggered</option>
+						<option>Negative Edge-Triggered</option>
+					</select>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-primary" tool="FF_JK" onclick="activeTool(this)" data-dismiss="modal">Create</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Modal for JK-Type FF Settings-->
 </html>
+
