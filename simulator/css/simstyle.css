@@ -1,0 +1,24 @@
+.navbar-brand {
+    font-size: 12px;
+    padding-top: 0px !important;
+}
+.navGroupTools {
+    padding-left: 2px;
+    padding-right: 2px;
+    border-right-style: dotted;
+    border-color:gray;
+}
+
+.githubSection {
+    display: flex;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.nav-item {
+    display: inline-flex;
+}
+
+input[type="file"] {
+    display: none;
+}

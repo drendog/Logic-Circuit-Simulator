@@ -1,11 +1,11 @@
-const MouseAction =
+export const MouseAction =
 {
     EDIT: 0,
     MOVE: 1,
     DELETE: 2
 }
 
-const gateType =
+export const gateType =
 {
     NONE: 0, // for testing usage
     NOT: 1,
@@ -17,7 +17,7 @@ const gateType =
     XNOR: 7
 };
 
-const IC_type =
+export const IC_type =
 {
     NONE: 0, // for testing usage
     SR_LATCH_ASYNC: 1,
@@ -28,8 +28,23 @@ const IC_type =
     FF_JK: 6
 }
 
-const syncType =
+export const ElementType =
+{
+    NONE: 0, // for testing usage
+    LOGIC_GATE: 1,
+    FLIP_FLOP: 2,
+    LOGIC_INPUT: 3,
+    LOGIC_OUTPUT: 4
+}
+
+export const syncType =
 {
     ASYNC: 0,
     SYNC: 1
+}
+
+export const INPUT_STATE =
+{
+    FREE: 0,
+    TAKEN: 1,
 }
