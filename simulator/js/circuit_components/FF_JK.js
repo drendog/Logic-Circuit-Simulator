@@ -20,7 +20,7 @@ export class FF_JK extends Integrated {
         this.andGate_Q = new Gate("AND");
         this.andGate_NotQ = new Gate("AND");
         this.isNegativeEdgeTrig = isNegativeEdgeTrig;
-        this.nodeStartID = nodeJ.id;
+        this.nodeStartID = this.nodeJ.id;
 
     }
 
