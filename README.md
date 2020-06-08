@@ -1,5 +1,5 @@
 # Logic Circuit Simulator
-A logic circuit simulator made with [p5.js library](https://github.com/processing/p5.js), useful for educational use. It can be used for simulate combinational and sequential circuits.
+A logic circuit simulator made with [p5.js library](https://github.com/processing/p5.js), useful for educational use. It can be used to simulate combinational and sequential circuits.
 
 ### Demo live
 A live version is available [here](https://drendog.github.io/Logic-Circuit-Simulator/).
