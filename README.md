@@ -10,18 +10,6 @@ A live version is available [here](https://drendog.github.io/Logic-Circuit-Simul
 
 ![](demo.gif)
 
-### Tools
-
-![](simulator/img/pencil.svg) Edit - Move the components - Connect wires
-
-![](simulator/img/hand.png) Move the whole circuit
-
-![](simulator/img/trashcan.svg) Remove the component
-
-![](simulator/img/LogicInput.png) Logic Input (double click to change value)
-
-![](simulator/img/LogicOutput.png) Logic Output
-
 ## Set up for offline work
 
 ### Prerequisites
