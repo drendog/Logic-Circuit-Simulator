@@ -1,7 +1,12 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
 	<!-- BOOTSTRAP STUFF -->
+	<meta charset="utf-8">
+	<meta name="description"
+		content="A logic circuit simulator made with p5.js library, useful for educational use. It can be used to simulate combinational and sequential circuits.">
+	<meta name="author" content="drendog">
 	<link rel="stylesheet" href="vendor/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="simulator/css/simstyle.css">
@@ -14,11 +19,14 @@
 	<script type="module" src="simulator/js/simulator.js"></script>
 	<title>Logic Circuit Simulator</title>
 </head>
-<header>
+
+<body>
+
 	<!-- Fixed navbar -->
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">
-			<center>Logic Circuit <br>Simulator</center>
+		<a class="navbar-brand text-center" href="#">
+			Logic Circuit
+			<br>Simulator
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
 			aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,32 +36,23 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item">
 					<!-- TODO
-						<div class="navGroupTools">
-						<button type="button" class="btn btn-outline-light"
-							onclick="window.location.href='https://git.io/fjHIF'" disabled>
-							<i class="fa fa-arrow-circle-left"></i>
-							Undo
-						</button>
-						<button type="button" class="btn btn-outline-light"
-							onclick="window.location.href='https://git.io/fjHIF'" disabled>
-							<i class="fa fa-arrow-circle-right"></i>
-							Redo
-						</button>
-					</div>-->
+              <div class="navGroupTools"><button type="button" class="btn btn-outline-light" disabled><i class="fa fa-arrow-circle-left"></i>
+              	Undo
+              </button><button type="button" class="btn btn-outline-light" disabled><i class="fa fa-arrow-circle-right"></i>
+              	Redo
+              </button></div>-->
 					<div class="navGroupTools">
 						<button type="button" class="btn btn-outline-light Edit active" tool="Edit"
 							onclick="activeTool(this)">
 							<i class="fa fa-edit"></i>
 							Edit
 						</button>
-						<button type="button" class="btn btn-outline-light" tool="Move" onclick="activeTool(this)"
-							onclick="window.location.href='https://git.io/fjHIF'">
+						<button type="button" class="btn btn-outline-light" tool="Move" onclick="activeTool(this)">
 							<i class="fa fa-arrows"></i>
 							Move
 						</button>
-						<button type="button" class="btn btn-outline-light" tool="Delete" onclick="activeTool(this)"
-							onclick="window.location.href='https://git.io/fjHIF'">
-							<i class="fa fa-trash-o"></i>
+						<button type="button" class="btn btn-outline-light" tool="Delete" onclick="activeTool(this)"">
+              				<i class=" fa fa-trash-o"></i>
 							Delete
 						</button>
 					</div>
@@ -71,90 +70,85 @@
 						</a>
 					</div>
 					<div class="githubSection">
-						<button type="button" class="btn btn-outline-light" tool="Delete" 
+						<button type="button" class="btn btn-outline-light"
 							onclick="window.location.href='https://git.io/fjHIF'">
 							<i class="fa fa-github"></i>
 						</button>
 					</div>
-
 					</a>
 				</li>
 			</ul>
 		</div>
 	</nav>
-</header>
-<!-- Begin page content -->
+	<!-- Begin page content -->
 
-<body>
-	<div class="container-fluid">
-		<hr>
+	<div class="container-fluid pt-3">
 		<div class="row">
-			<div class="tools col-0 ml-3 pr-0" style="overflow-y: scroll">
+			<div class="tools col-0 ml-3 pr-0 overflow-scroll" style="overflow-y: scroll;height: calc(100vh - 5rem);">
 				<div class="list-group float-right" style="min-width: 50px; max-width: 60px">
 					<button type="button" tool="LogicInput" title="Logic Input" onclick="activeTool(this)"
 						class="list-group-item list-group-item-action pl-1">
 						<img src="simulator/img/LogicInput.svg" class="ml-2" width="32">
-						<button type="button" tool="LogicOutput" title="Logic Output" onclick="activeTool(this)"
-							class="list-group-item list-group-item-action pl-1">
-							<img src="simulator/img/LogicOutput.svg" class="ml-2" width="32">
-						</button>
-						<button type="button" data-target="#ClockSettings" data-toggle="modal" title="Clock"
-							class="list-group-item list-group-item-action pl-1">
-							<img src="simulator/img/Clock.svg" width="50">
-						</button>
-						<button type="button" tool="NOT" isGate="true" onclick="activeTool(this)"
-							class="list-group-item list-group-item-action pl-1">
-							<img src="simulator/img/NOT.svg" width="50">
-						</button>
-						<button type="button" tool="AND" isGate="true" onclick="activeTool(this)"
-							class="list-group-item list-group-item-action pl-1">
-							<img src="simulator/img/AND.svg" width="50">
-						</button>
-						<button type="button" tool="NAND" isGate="true" onclick="activeTool(this)"
-							class="list-group-item list-group-item-action pl-1">
-							<img src="simulator/img/NAND.svg" width="50">
-						</button>
-						<button type="button" tool="OR" isGate="true" onclick="activeTool(this)"
-							class="list-group-item list-group-item-action pl-1">
-							<img src="simulator/img/OR.svg" width="50">
-						</button>
-						<button type="button" tool="NOR" isGate="true" onclick="activeTool(this)"
-							class="list-group-item list-group-item-action pl-1">
-							<img src="simulator/img/NOR.svg" width="50">
-						</button>
-						<button type="button" tool="XOR" isGate="true" onclick="activeTool(this)"
-							class="list-group-item list-group-item-action pl-1">
-							<img src="simulator/img/XOR.svg" width="50">
-						</button>
-						<button type="button" tool="XNOR" isGate="true" onclick="activeTool(this)"
-							class="list-group-item list-group-item-action pl-1">
-							<img src="simulator/img/XNOR.svg" width="50">
-						</button>
-						<button type="button" data-target="#SR_LatchSettings" title="Latch SR NOR-NAND Sync-Async"
-							data-toggle="modal" class="list-group-item list-group-item-action pl-1">
-							<img src="simulator/img/SR_Latch.svg" width="50">
-						</button>
-						<button type="button" data-target="#FF_D-TypeSettings"
-							title="Flip Flop D Single or Master-Slave" data-toggle="modal"
-							class="list-group-item list-group-item-action pl-1">
-							<img src="simulator/img/FF_D_MS.svg" width="50">
-						</button>
-						<button type="button" data-target="#FF_T-TypeSettings"
-							title="Flip Flop T Positive-Negative Edge Triggered" data-toggle="modal"
-							class="list-group-item list-group-item-action pl-1">
-							<img src="simulator/img/FF_T.svg" width="50">
-						</button>
-						<button type="button" data-target="#FF_JK-TypeSettings"
-							title="Flip Flop JK Positive-Negative Edge Triggered" data-toggle="modal"
-							class="list-group-item list-group-item-action pl-1">
-							<img src="simulator/img/FF_JK.svg" width="50">
-						</button>
+					</button>
+					<button type="button" tool="LogicOutput" title="Logic Output" onclick="activeTool(this)"
+						class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/LogicOutput.svg" class="ml-2" width="32">
+					</button>
+					<button type="button" data-target="#ClockSettings" data-toggle="modal" title="Clock"
+						class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/Clock.svg" width="50">
+					</button>
+					<button type="button" tool="NOT" isGate="true" onclick="activeTool(this)"
+						class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/NOT.svg" width="50">
+					</button>
+					<button type="button" tool="AND" isGate="true" onclick="activeTool(this)"
+						class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/AND.svg" width="50">
+					</button>
+					<button type="button" tool="NAND" isGate="true" onclick="activeTool(this)"
+						class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/NAND.svg" width="50">
+					</button>
+					<button type="button" tool="OR" isGate="true" onclick="activeTool(this)"
+						class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/OR.svg" width="50">
+					</button>
+					<button type="button" tool="NOR" isGate="true" onclick="activeTool(this)"
+						class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/NOR.svg" width="50">
+					</button>
+					<button type="button" tool="XOR" isGate="true" onclick="activeTool(this)"
+						class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/XOR.svg" width="50">
+					</button>
+					<button type="button" tool="XNOR" isGate="true" onclick="activeTool(this)"
+						class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/XNOR.svg" width="50">
+					</button>
+					<button type="button" data-target="#SR_LatchSettings" title="Latch SR NOR-NAND Sync-Async"
+						data-toggle="modal" class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/SR_Latch.svg" width="50">
+					</button>
+					<button type="button" data-target="#FF_D-TypeSettings" title="Flip Flop D Single or Master-Slave"
+						data-toggle="modal" class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/FF_D_MS.svg" width="50">
+					</button>
+					<button type="button" data-target="#FF_T-TypeSettings"
+						title="Flip Flop T Positive-Negative Edge Triggered" data-toggle="modal"
+						class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/FF_T.svg" width="50">
+					</button>
+					<button type="button" data-target="#FF_JK-TypeSettings"
+						title="Flip Flop JK Positive-Negative Edge Triggered" data-toggle="modal"
+						class="list-group-item list-group-item-action pl-1">
+						<img src="simulator/img/FF_JK.svg" width="50">
+					</button>
 				</div>
 			</div>
 			<div class="col-10 pl-0">
 				<!-- Simulator Canvas -->
-				<div id="canvas-sim">
-				</div>
+				<div id="canvas-sim"></div>
 			</div>
 		</div>
 	</div>
