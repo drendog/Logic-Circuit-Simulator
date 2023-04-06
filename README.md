@@ -2,6 +2,10 @@
 
 A logic circuit simulator made with [p5.js library](https://github.com/processing/p5.js), useful for educational use. It can be used to simulate combinational and sequential circuits.
 
+## 🍴 A very nice forked repository
+
+A fork of this project with additional features and improvements can be found [here](https://github.com/jppellet/Logic-Circuit-Simulator). I would like to thank the developer of the fork, [jppellet](https://github.com/jppellet), for his contributions.
+
 ## Demo live
 
 A live version is available [here](https://drendog.github.io/Logic-Circuit-Simulator/).
